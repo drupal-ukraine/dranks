@@ -1,0 +1,105 @@
+{
+    "name": "ymcatwincities/openy-project",
+    "description": "Project template for OpenY projects with composer",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "require": {
+        "ymcatwincities/openy": "dev-8.x-1.x",
+        "composer/installers": "^1.2",
+        "drupal-composer/drupal-scaffold": "^2.2",
+        "cweagans/composer-patches": "~1.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "library-kenwheeler/slick",
+                "version": "1.6.0",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/kenwheeler/slick",
+                    "type": "git",
+                    "reference": "1.6.0"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "library-dinbror/blazy",
+                "version": "1.8.2",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/dinbror/blazy",
+                    "type": "git",
+                    "reference": "1.8.2"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "library-gdsmith/jquery.easing",
+                "version": "1.4.1",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/gdsmith/jquery.easing",
+                    "type": "git",
+                    "reference": "1.4.1"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "library-enyo/dropzone",
+                "version": "4.3.0",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/enyo/dropzone",
+                    "type": "git",
+                    "reference": "v4.3.0"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "library-jaypan/jquery_colorpicker",
+                "version": "1.0.1",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/jaypan/jquery_colorpicker",
+                    "type": "git",
+                    "reference": "da978ae124c57817021b3166a31881876882f5f9"
+                }
+            }
+        }
+    ],
+    "scripts": {
+        "post-install-cmd": [
+            "@composer drupal-scaffold"
+        ],
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+    },
+    "extra": {
+        "installer-paths": {
+            "core": ["type:drupal-core"],
+            "libraries/{$name}": ["type:drupal-library"],
+            "modules/contrib/{$name}": ["type:drupal-module"],
+            "profiles/contrib/{$name}": ["type:drupal-profile"],
+            "themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "enable-patching": true
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
