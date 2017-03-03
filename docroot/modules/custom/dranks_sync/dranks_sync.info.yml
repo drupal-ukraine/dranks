@@ -1,0 +1,8 @@
+name: DRANKS sync
+type: module
+description: 'Provides functionality for using of Syncer.'
+package: DRANKS
+core: 8.x
+dependencies:
+  - ymca:ymca_sync
+

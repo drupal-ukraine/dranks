@@ -1,0 +1,8 @@
+services:
+  phpunit_tdd.runner:
+    class: Drupal\phpunit_tdd\PhpUnitTestRunner
+    arguments: []
+  serializer.normalizer.array:
+    class: Symfony\Component\Serializer\Normalizer\ArrayDenormalizer
+    tags:
+      - { name: normalizer }
