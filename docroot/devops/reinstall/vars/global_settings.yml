@@ -1,7 +1,7 @@
 ---
 drupal_user: admin
-drupal_pass: propeople
-installation_profile_name: pp
+drupal_pass: crazy_ukrainians
+installation_profile_name: openy
 mysql_user: root
 mysql_pass: root
 mysql_db: drupal
