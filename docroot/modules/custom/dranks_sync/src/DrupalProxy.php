@@ -12,8 +12,10 @@ namespace Drupal\dranks_sync;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 class DrupalProxy implements DrupalProxyInterface{
+  use StringTranslationTrait;
 
 
   /**

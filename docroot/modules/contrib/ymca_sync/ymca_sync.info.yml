@@ -3,6 +3,4 @@ type: module
 description: YMCA Sync services. Webservises.
 core: 8.x
 package: YMCA
-dependencies:
-  - ymca_google
-  - ymca_groupex
+

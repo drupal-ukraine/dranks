@@ -15,8 +15,10 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Entity\Query\QueryFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 class Pusher implements PusherInterface{
+  use StringTranslationTrait;
 
 
   /**
@@ -85,7 +87,7 @@ class Pusher implements PusherInterface{
    * @param QueryFactoryInterface $query
    *   Query factory.
    */
-  public function __construct(Wrapper $data_wrapper, ConfigFactoryInterface $config_factory, LoggerChannelInterface $logger, EntityTypeManagerInterface $entity_type_manager, DrupalProxyInterface $proxy, QueryFactoryInterface $query) {
+  public function __construct(Wrapper $data_wrapper, ConfigFactoryInterface $config_factory, LoggerChannelInterface $logger, EntityTypeManagerInterface $entity_type_manager, DrupalProxyInterface $proxy, QueryFactory $query) {
     $this->dataWrapper = $data_wrapper;
     $this->configFactory = $config_factory;
     $this->logger = $logger;
@@ -97,8 +99,12 @@ class Pusher implements PusherInterface{
 
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function push() {
     // TODO: Implement push() method.
+    $this->logger->error($this->t('Implement push method'));
   }
 
 }

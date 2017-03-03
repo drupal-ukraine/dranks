@@ -14,7 +14,7 @@ services:
     arguments: ['@dranks_sync.dorg_wrapper', '@config.factory', '@logger.channel.dranks_sync', '@entity_type.manager', '@dranks_sync.drupal_proxy', '@entity.query']
   dranks_sync.dorg_wrapper:
     class: Drupal\dranks_sync\Wrapper
-    arguments: ['@state', '@logger.factory', '@config.dranks_sync.settings']
+    arguments: ['@state', '@logger.channel.dranks_sync', '@config.dranks_sync.settings']
   dranks_sync.drupal_proxy:
     class: Drupal\dranks_sync\DrupalProxy
     arguments: ['@dranks_sync.dorg_wrapper', '@entity.query', '@logger.channel.dranks_sync', '@dranks_sync.dorg_fetcher', '@entity_type.manager']
@@ -24,6 +24,6 @@ services:
     calls:
       - [addStep, ['@dranks_sync.dorg_fetcher', 'fetch']]
       - [addStep, ['@dranks_sync.drupal_proxy', 'saveEntities']]
-      - [addStep, ['@dranks_sync.pusher', 'proceed']]
+      - [addStep, ['@dranks_sync.pusher', 'push']]
     tags:
       - { name: syncer }
