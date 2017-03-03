@@ -17,7 +17,7 @@ services:
     arguments: ['@state', '@logger.factory', '@config.dranks_sync.settings']
   dranks_sync.drupal_proxy:
     class: Drupal\dranks_sync\DrupalProxy
-    arguments: ['@dranks_sync.dorg_wrapper', '@entity.query', '@logger.channel.dranks_sync', '@dranks_sync.data_fetcher', '@plugin.manager.gcal_updater', '@entity_type.manager']
+    arguments: ['@dranks_sync.dorg_wrapper', '@entity.query', '@logger.channel.dranks_sync', '@dranks_sync.dorg_fetcher', '@entity_type.manager']
   dranks_sync.syncer:
     class: Drupal\ymca_sync\Syncer
     arguments: ['@dranks_sync.dorg_wrapper']
