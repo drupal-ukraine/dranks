@@ -1,0 +1,20 @@
+decorated:
+  -
+    source: daxko.client
+    replacement: tdd.daxko.client
+    status: true
+    methods:
+      getSessions:
+        status: true
+        data: 'Test data for showing up how the config working'
+  -
+    source: ygh_programs_search.data_storage
+    replacement: tdd.ygh_programs_search.data_storage
+    status: true
+    methods:
+      warmCache:
+        status: true
+      coldCache:
+        status: false
+_core:
+  default_config_hash: null

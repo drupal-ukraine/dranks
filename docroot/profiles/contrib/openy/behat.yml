@@ -1,0 +1,60 @@
+default:
+  autoload:
+    '': tests/features/bootstrap
+  suites:
+    default:
+      paths:
+        features: '%paths.base%/tests/features'
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  formatters:
+    html:
+      output_path: %paths.base%/build/reports/behat
+    pretty:
+      decorated: true
+      verbose: false
+      time: true
+      language: en
+      output_path: null
+      multiline_arguments: true
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2: ~
+    Drupal\DrupalExtension:
+      api_driver: drupal
+      drush_driver: drush
+      drush:
+        root: '/var/www/docroot'
+      blackbox: ~
+      subcontexts:
+        paths:
+          - tests/features/bootstrap
+        autoload: false
+      region_map:
+        header: '#page-head'
+        header_area: '#edit-group-header-area'
+        content: '.main-region'
+        content_area: '#edit-group-content-area'
+        sidebar: '.sidebar-rigeon'
+        sidebar_area: '#edit-group-sidebar-area'
+        footer: 'footer'
+        dropdown_menu: 'ul.nav.dropdown-menu'
+      selectors:
+        login_form_selector: '#user-login-form'
+        message_selector: '.status-message'
+        error_message_selector: 'status-message__alert p'
+        success_message_selector: '.status-message ul, .status-message p'
+    emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+      renderer: Twig
+      name: html
+      file_name: index
+      print_args: true
+      print_outp: true
+      loop_break: true
+imports:
+  - behat.local.yml

@@ -1,0 +1,29 @@
+services:
+  config.dranks_sync.settings:
+    class: \Drupal\Core\Config\ImmutableConfig
+    factory: config.factory:get
+    arguments: ['dranks_sync.settings']
+  logger.channel.dranks_sync:
+    parent: logger.channel_base
+    arguments: ['dranks_sync']
+  dranks_sync.dorg_fetcher:
+    class: Drupal\dranks_sync\Fetcher
+    arguments: ['@dranks_sync.dorg_wrapper', '@logger.channel.dranks_sync', '@http_client']
+  dranks_sync.pusher:
+    class: Drupal\dranks_sync\Pusher
+    arguments: ['@dranks_sync.dorg_wrapper', '@config.factory', '@logger.channel.dranks_sync', '@entity_type.manager', '@dranks_sync.drupal_proxy', '@entity.query']
+  dranks_sync.dorg_wrapper:
+    class: Drupal\dranks_sync\Wrapper
+    arguments: ['@state', '@logger.channel.dranks_sync', '@config.dranks_sync.settings']
+  dranks_sync.drupal_proxy:
+    class: Drupal\dranks_sync\DrupalProxy
+    arguments: ['@dranks_sync.dorg_wrapper', '@entity.query', '@logger.channel.dranks_sync', '@dranks_sync.dorg_fetcher', '@entity_type.manager']
+  dranks_sync.syncer:
+    class: Drupal\ymca_sync\Syncer
+    arguments: ['@dranks_sync.dorg_wrapper']
+    calls:
+      - [addStep, ['@dranks_sync.dorg_fetcher', 'fetch']]
+      - [addStep, ['@dranks_sync.drupal_proxy', 'saveEntities']]
+      - [addStep, ['@dranks_sync.pusher', 'push']]
+    tags:
+      - { name: syncer }
